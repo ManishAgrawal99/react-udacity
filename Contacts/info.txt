@@ -16,3 +16,20 @@ with props as an argument and return the JSX
 
 _________________________________
 
+State of a Component
+
+A property for a Component is received by its parent and is immutable
+Whereas a state of the Component holds the data that could be changed,
+Usually by a user input
+
+We can create a state for the Component just by creating an object with the name state
+
+These states could be accessed in that Component by using this.state
+
+The initial state of the Component must never be taken from the props
+props are set only when the Component is rendered
+If the Component is not refreshed, the Component's state may not be updated
+
+_________________________________
+
+
