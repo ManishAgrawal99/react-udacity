@@ -1,0 +1,9 @@
+To start the server
+
+Install the node packages
+npm Install
+
+Start the server
+node server.js
+
+Server is set to port 5001
