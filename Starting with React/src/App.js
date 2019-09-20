@@ -3,11 +3,7 @@ import React from 'react';
 
 class ContactList extends React.Component {
     render() {
-        const people = [
-            {name: 'Chandler'},
-            {name: 'Joey'},
-            {name: 'Ross'}
-        ]
+        const people = this.props.contacts;
 
         return (
             <ol>
@@ -25,7 +21,16 @@ class App extends React.Component {
     render() {
         return (
             <div className="App">
-                <ContactList />
+                <ContactList contacts={[
+                    { name: 'Chandler' },
+                    { name: 'Joey' },
+                    { name: 'Ross' }
+                ]} />
+
+                <ContactList contacts={[
+                    { name: 'Rachel' },
+                    { name: 'Monica' }
+                ]} />
             </div>
         );
     }
