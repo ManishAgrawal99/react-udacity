@@ -32,4 +32,16 @@ If the Component is not refreshed, the Component's state may not be updated
 
 _________________________________
 
+setState()
+
+In order to change the state of the Component we cannot directly change the value,
+since React will not know about the change in state.
+Hence, setState is used to rerender the component in case of changed state.
+
+setState() could take either of 2 parameters
+1. Functional setState takes in a function where the argument is the previous state and that state is altered
+2. Object -> It takes in an Object and that object is merged with the state
+
+_________________________________
+
 
