@@ -7,3 +7,12 @@ Start the server
 node server.js
 
 Server is set to port 5001
+
+_________________________________
+
+Stateless Functional Component
+When a Component only holds a render method and does not keep a track of the state, we can simply create a function,
+with props as an argument and return the JSX
+
+_________________________________
+
