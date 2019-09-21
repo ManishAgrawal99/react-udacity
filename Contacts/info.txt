@@ -59,3 +59,25 @@ And as we've learned: any changes to React state will cause a re-render on the p
 effectively displaying our live search results.
 
 _________________________________
+
+Lifecycle Events
+
+Lifecycle events are specially named methods in a component. 
+These methods are automatically bound to the component instance, 
+and React will call these methods naturally at certain times during the life of a component. 
+There are a number of different lifecycle events, but here are the most commonly used ones.
+
+    componentDidMount()
+
+        invoked immediately after the component is inserted into the DOM
+
+    componentWillUnmount()
+
+        invoked immediately before a component is removed from the DOM
+
+    getDerivedStateFromProps()
+
+        invoked after a component is instantiated as well as when it receives brand new props
+
+To use one of these, you'd just create a method in your component with the name and React will call it. 
+It's an easy way to hook into different parts of the lifecycle of React components.
