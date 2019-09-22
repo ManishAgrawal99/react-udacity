@@ -92,3 +92,25 @@ Hence react router are used
 npm install --save react-router-dom
 
 _________________________________
+
+In order to use the react router, we need to encapsulate the <App /> component in index.js with <BrowserRouter>
+
+import {BrowserRouter} from 'react-router-dom'
+ReactDOM.render(
+    <BrowserRouter>
+        <App />
+    </BrowserRouter>,
+    document.getElementById('root')
+);
+
+Instead of using the <a> tags we need to use the <Link> to mark the components in history
+<Link to={{
+    pathname: '/courses',
+    search: '?sort=name',
+    hash: '#the-hash',
+    state: { fromDashboard: true }
+}}>
+ Courses
+</Link> 
+
+_________________________________
