@@ -10,7 +10,7 @@ class App extends Component {
 
     state = {
         contacts: [],
-        screen: 'create'
+        screen: 'list'
     }
 
     componentDidMount() {
@@ -33,6 +33,12 @@ class App extends Component {
         ContactsAPI.remove(contact)
     }
 
+    addContact = ()=>{
+        this.setState((currentState)=>({
+            screen: 'create'
+        }))
+    }
+
     render() {
         return (
             <div>
@@ -40,6 +46,7 @@ class App extends Component {
                     (<ListContacts
                         contacts={this.state.contacts}
                         onDeleteContact={this.removeContact}
+                        onCreateContact={this.addContact}
                     />)}
                 {this.state.screen === 'create' && <CreateContact />}
             </div>
