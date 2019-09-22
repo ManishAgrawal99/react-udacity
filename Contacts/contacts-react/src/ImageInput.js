@@ -71,7 +71,7 @@ class ImageInput extends React.Component {
 
     componentDidMount() {
         this.canvas = document.createElement('canvas')
-        this.fileInput.form.addEventListener('reset', this.handleFormReset)
+        //this.fileInput.form.addEventListener('reset', this.handleFormReset)
     }
 
     componentWillUnmount() {
