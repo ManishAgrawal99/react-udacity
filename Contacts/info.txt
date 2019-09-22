@@ -81,3 +81,14 @@ There are a number of different lifecycle events, but here are the most commonly
 
 To use one of these, you'd just create a method in your component with the name and React will call it. 
 It's an easy way to hook into different parts of the lifecycle of React components.
+
+_________________________________
+React Router
+
+They are used to display different components on the basis of the URL
+When we alter the COmponents on the basis of the state the back button of the browser breaks
+Hence react router are used
+
+npm install --save react-router-dom
+
+_________________________________
