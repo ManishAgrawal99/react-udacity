@@ -1,38 +1,40 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './utils/bootstrap.css'
 import './App.css';
 
+import * as BooksAPI from './BooksAPI'
+
 import BookSection from './BookSection';
 
-function App() {
+class App extends Component {
 
-    const Books = [
-        {
-            name: 'harry Potter',
-            author: 'JK'
-        },
-        {
-            name: 'XYZ',
-            author: 'abx'
-        },
-        {
-            name: 'lalalal',
-            author: 'ajdhjdah'
-        }
-    ]
+    state = {
+        books: []
+    }
 
-    return (
-        <div className="App">
-            <div className="container">
-                <div className="row text-center">
-                    <h1>My Reads</h1>
+    componentDidMount(){
+        BooksAPI.getAll()
+        .then((books)=>{
+            this.setState(()=>({
+                books
+            }))
+        })
+    }
+
+    render() {
+        return (
+            <div className="App">
+                <div className="container">
+                    <div className="row text-center">
+                        <h1>My Reads</h1>
+                    </div>
+                    <BookSection secHead='Currently Reading' books={this.state.books} />
+                    <BookSection secHead='Want to Read' books={this.state.books} />
+                    <BookSection secHead='Read' books={this.state.books} />
                 </div>
-                <BookSection secHead='Currently Reading' books={Books}/>
-                <BookSection secHead='Want to Read' books={Books}/>
-                <BookSection secHead='Read' books={Books}/>
             </div>
-        </div>
-    );
+        );
+    }
 }
 
 export default App;
