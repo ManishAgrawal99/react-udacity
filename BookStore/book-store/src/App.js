@@ -15,28 +15,45 @@ class App extends Component {
         read: []
     }
 
-    categorizeBooks = (books) =>{
-        for(const book of books){
-            if(book.shelf === 'currentlyReading'){
+    changeShelf = (book, shelf) => {
+        BooksAPI.update(book, shelf)
+            .then(() => {
+                BooksAPI.getAll()
+                    .then((books) => {
+                        this.categorizeBooks(books);
+                        this.setState(() => ({
+                            books
+                        }));
+                    })
+            })
+    }
+
+    categorizeBooks = (books) => {
+        this.state.curr=[];
+        this.state.want=[];
+        this.state.read=[];
+        
+        for (const book of books) {
+            if (book.shelf === 'currentlyReading') {
                 this.state.curr.push(book);
             }
-            else if(book.shelf === 'wantToRead'){
+            else if (book.shelf === 'wantToRead') {
                 this.state.want.push(book);
             }
-            else if(book.shelf === 'read'){
+            else if (book.shelf === 'read') {
                 this.state.read.push(book);
             }
         }
     }
 
-    componentDidMount(){
+    componentDidMount() {
         BooksAPI.getAll()
-        .then((books)=>{
-            this.categorizeBooks(books);
-            this.setState(()=>({
-                books
-            }));
-        })
+            .then((books) => {
+                this.categorizeBooks(books);
+                this.setState(() => ({
+                    books
+                }));
+            })
     }
 
     render() {
@@ -46,9 +63,15 @@ class App extends Component {
                     <div className="row text-center">
                         <h1>My Reads</h1>
                     </div>
-                    <BookSection secHead='Currently Reading' books={this.state.curr} />
-                    <BookSection secHead='Want to Read' books={this.state.want} />
-                    <BookSection secHead='Read' books={this.state.read} />
+                    <BookSection secHead='Currently Reading' books={this.state.curr}
+                        onChangeShelf={(book, shelf) => { this.changeShelf(book, shelf) }}
+                    />
+                    <BookSection secHead='Want to Read' books={this.state.want}
+                        onChangeShelf={(book, shelf) => { this.changeShelf(book, shelf) }}
+                    />
+                    <BookSection secHead='Read' books={this.state.read}
+                        onChangeShelf={(book, shelf) => { this.changeShelf(book, shelf) }}
+                    />
                 </div>
             </div>
         );
