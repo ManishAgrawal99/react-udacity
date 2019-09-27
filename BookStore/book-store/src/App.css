@@ -45,3 +45,48 @@ box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
     opacity: 0;
     cursor: pointer;
 }
+
+.list-contacts-top {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    border-bottom: 1px solid #d5d8df;
+    display: flex;
+}
+  
+.search-contacts {
+    width: 100%;
+    padding: 20px 20px 20px 60px;
+    background-image: url('./icons/search.svg');
+    background-repeat: no-repeat;
+    background-position: 20px center;
+    background-size: 1.2em;
+    font-size: 1.2em;
+    border: 0;
+    outline: none;
+}
+
+.open-search {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+  }
+  
+  .open-search a {
+    display: block;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: #2e7d32;
+    background-image: url('./icons/add.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 28px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    font-size: 0;
+    outline: 0;
+  }
+  
+  .open-search a:hover {
+    background-color: rgb(0, 102, 0);
+  }

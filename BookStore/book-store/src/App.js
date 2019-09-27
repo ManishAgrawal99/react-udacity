@@ -2,9 +2,12 @@ import React, { Component } from 'react';
 import './utils/bootstrap.css'
 import './App.css';
 
+import { Route, Link } from 'react-router-dom';
+
 import * as BooksAPI from './BooksAPI'
 
 import BookSection from './BookSection';
+import SearchBooks from './SearchBooks';
 
 class App extends Component {
 
@@ -29,10 +32,13 @@ class App extends Component {
     }
 
     categorizeBooks = (books) => {
-        this.state.curr=[];
-        this.state.want=[];
-        this.state.read=[];
-        
+
+        this.setState(() => ({
+            curr: [],
+            want: [],
+            read: []
+        }))
+
         for (const book of books) {
             if (book.shelf === 'currentlyReading') {
                 this.state.curr.push(book);
@@ -59,20 +65,35 @@ class App extends Component {
     render() {
         return (
             <div className="App">
-                <div className="container">
-                    <div className="row text-center">
-                        <h1>My Reads</h1>
+                <Route exact path='/' render={() => (
+                    <div className="container">
+                        <div className="row text-center">
+                            <h1>My Reads</h1>
+                        </div>
+                        <BookSection secHead='Currently Reading' books={this.state.curr}
+                            onChangeShelf={(book, shelf) => { this.changeShelf(book, shelf) }}
+                        />
+                        <BookSection secHead='Want to Read' books={this.state.want}
+                            onChangeShelf={(book, shelf) => { this.changeShelf(book, shelf) }}
+                        />
+                        <BookSection secHead='Read' books={this.state.read}
+                            onChangeShelf={(book, shelf) => { this.changeShelf(book, shelf) }}
+                        />
+                        <div className="open-search">
+                            <Link to='/search'>
+                                Add a book
+                            </Link>
+                        </div>
                     </div>
-                    <BookSection secHead='Currently Reading' books={this.state.curr}
-                        onChangeShelf={(book, shelf) => { this.changeShelf(book, shelf) }}
-                    />
-                    <BookSection secHead='Want to Read' books={this.state.want}
-                        onChangeShelf={(book, shelf) => { this.changeShelf(book, shelf) }}
-                    />
-                    <BookSection secHead='Read' books={this.state.read}
-                        onChangeShelf={(book, shelf) => { this.changeShelf(book, shelf) }}
-                    />
-                </div>
+                )}
+                />
+                <Route path='/search' render={({ history }) => (
+                    <SearchBooks books={this.state.books}
+                        onChangeShelf={(book, shelf) => {
+                            this.changeShelf(book, shelf)
+                            history.push('/')
+                        }} />
+                )} />
             </div>
         );
     }
