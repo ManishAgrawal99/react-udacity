@@ -255,32 +255,50 @@
 
     </script>
     <script type='text/babel'>
-        function List(props){
-            return(
+        function List(props) {
+            return (
                 <ul>
                     <li>List</li>
                 </ul>
             )
         }
 
-        class Todos extends React.Component{
-            render(){
-                return(
+        class Todos extends React.Component {
+            addItem = (e) => {
+                e.preventDefault()
+                const name = this.input.value
+                this.input.value = ''
+
+                this.props.store.dispatch(addTodoAction({
+                    name,
+                    complete: false,
+                    id: generateId()
+                }))
+            }
+
+            render() {
+                return (
                     <div>
-                        ToDos
-                        
+                        <h1>ToDos</h1>
+                        <input
+                            type="text"
+                            placeholder="Add Todos"
+                            ref={(input) => this.input = input}
+                        />
+                        <button onClick={this.addItem}>Add ToDo</button>
+
                         <List />
                     </div>
                 )
             }
         }
 
-        class Goals extends React.Component{
-            render(){
-                return(
+        class Goals extends React.Component {
+            render() {
+                return (
                     <div>
                         Goals
-                        
+
                         <List />
                     </div>
                 )
@@ -288,18 +306,18 @@
         }
 
         class App extends React.Component {
-            render(){
-                return(
+            render() {
+                return (
                     <div>
-                        <Todos />
-                        <Goals />
+                        <Todos store={this.props.store}/>
+                        <Goals store={this.props.store}/>
                     </div>
                 )
             }
         }
 
         ReactDOM.render(
-            <App/>,
+            <App store={store}/>,
             document.getElementById('app')
         )
     </script>
