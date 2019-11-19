@@ -125,13 +125,20 @@
             }
         }
 
-        
+        //Creating the logger Middleware
+        const logger = (store) => (next) => (action) =>{
+            console.group(action.type)
+                console.log('The Action: ', action);
+                const result = next(action);
+                console.log('The new state: ', store.getState())
+            console.groupEnd()
+        }
 
         //Creating the store
         const store = Redux.createStore(Redux.combineReducers({
             todos,
             goals
-        }), Redux.applyMiddleware(checker))
+        }), Redux.applyMiddleware(checker, logger))
 
         //Subscribing to store to listen for changes
         store.subscribe(() => {
