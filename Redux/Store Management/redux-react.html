@@ -100,6 +100,16 @@
             }
         }
 
+        //Reducer fn for loader
+        function loading(state=true, action){
+            switch(action.type){
+                case RECEIVE_DATA:
+                    return false
+                default:
+                    return state
+            }
+        }
+
         //App Reducer fn
         // function app(state = {}, action) {
         //     return {
@@ -136,7 +146,8 @@
         //Creating the store
         const store = Redux.createStore(Redux.combineReducers({
             todos,
-            goals
+            goals,
+            loading
         }), Redux.applyMiddleware(checker, logger))
 
     </script>
@@ -261,7 +272,11 @@
             render() {
 
                 const {store} = this.props
-                const {todos, goals} = store.getState()
+                const {todos, goals, loading} = store.getState()
+
+                if(loading===true){
+                    return <h3>loading...</h3>
+                }
 
                 return (
                     <div>
