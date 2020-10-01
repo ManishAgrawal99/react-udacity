@@ -1,10 +1,8 @@
 import React from 'react';
 
 
-class ContactList extends React.Component {
-    render() {
-        const people = this.props.contacts;
-
+function ContactList({contacts}) {
+        const people = contacts;
         return (
             <ol>
                 {
@@ -17,8 +15,7 @@ class ContactList extends React.Component {
     }
 }
 
-class App extends React.Component {
-    render() {
+function App() {
         return (
             <div className="App">
                 <ContactList contacts={[
@@ -33,7 +30,6 @@ class App extends React.Component {
                 ]} />
             </div>
         );
-    }
 }
 
 export default App;
